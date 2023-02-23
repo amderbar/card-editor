@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "src"
+      component: "lib:card-editor"
+
+    - path: "app/Main.hs"
+      component: "card-editor:exe:card-editor"
+
+    - path: "test"
+      component: "card-editor:test:card-editor-test"

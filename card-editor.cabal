@@ -1,0 +1,56 @@
+cabal-version:      2.4
+name:               card-editor
+version:            0.1.0.0
+synopsis:           カードという単位でアイディアを記録、整理するエディタ
+
+-- A longer description of the package.
+-- description:
+homepage:           https://github.com/amderbar/card-editor
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            MIT
+license-file:       LICENSE
+author:             amderbar
+maintainer:         amderbar@gmail.com
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+common shared-properties
+  default-language: Haskell2010
+  build-depends:    base ^>=4.16.4.0
+
+library
+  import:          shared-properties
+
+  -- cabal-fmt: expand src
+  exposed-modules: MyLib
+  hs-source-dirs:  src
+
+executable card-editor
+  import:         shared-properties
+  main-is:        Main.hs
+
+  build-depends:  card-editor
+  hs-source-dirs: app
+
+test-suite card-editor-test
+  import:             shared-properties
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test
+  ghc-options:
+    -Wall -Wincomplete-uni-patterns -Wincomplete-record-updates
+    -Wmissing-import-lists -Wcompat
+
+  main-is:            Spec.hs
+
+  -- cabal-fmt: expand test -Spec
+  other-modules:      MyLibSpec
+  build-depends:
+    , card-editor
+    , hspec
+
+  build-tool-depends: hspec-discover:hspec-discover
